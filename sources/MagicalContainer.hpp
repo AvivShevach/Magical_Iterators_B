@@ -1,6 +1,6 @@
 #include <vector>
 #include <iostream>
-#include <algorithm>>
+#include <algorithm>
 using namespace std;
 namespace ariel{};
 class MagicalContainer
@@ -8,7 +8,7 @@ class MagicalContainer
    private:
   // public:
         vector<int> elements;
-        vector<int> sortedCollection;
+    //   vector<int> sortedCollection;
 
  public:
     void addElement(int);
@@ -16,36 +16,50 @@ class MagicalContainer
     void removeElement(int);
     vector<int> getCollection() const;
 
-    vector<int>::const_iterator begin() const{return sortedCollection.begin();};
-    vector<int>::const_iterator end() const{return sortedCollection.end();};
-    class AscendingIterator;
-    class SideCrossIterator;
-    class PrimeIterator;
+    // vector<int>::const_iterator begin() const{return sortedCollection.begin();};
+    // vector<int>::const_iterator end() const{return sortedCollection.end();};
 
-};
-   class MagicalContainer::AscendingIterator
+   class AscendingIterator
    {
-      MagicalContainer &container;
-      vector<int> sortedCollection;
+    //  MagicalContainer &container;
+    MagicalContainer* container;
+    //  vector<int> sortedCollection;
       int index;
+    //   private:
+    //   std::vector<int>::const_iterator iter;
     public:
-       AscendingIterator(MagicalContainer& cont): container(cont), index(0){};
-       AscendingIterator(const AscendingIterator& other);
+    //   AscendingIterator(MagicalContainer& cont, int index=0);
+    //   AscendingIterator(const AscendingIterator& other);
 
+    AscendingIterator() : container(nullptr), index(0) {}
+    explicit AscendingIterator(MagicalContainer& container, int index = 0) : container(&container), index(index) {}
+    AscendingIterator(const AscendingIterator& other) : container(other.container), index(other.index) {}
+
+
+     // vector<int> getCollection() const{return container.getCollection();};
+     // void operator=(const AscendingIterator& otherIter) const;
+    //   bool operator==(const AscendingIterator otherIter) const;
+      AscendingIterator& operator=(const AscendingIterator& other);
       bool operator==(const AscendingIterator& otherIter) const;
       bool operator>(const AscendingIterator& otherIter) const;
       bool operator<(const AscendingIterator& otherIter) const;
       bool operator!=(const AscendingIterator& otherIter) const;
-      int operator*() const;//{return container.getElementAt(index);}
+      int operator*();
+      explicit AscendingIterator(std::vector<int>::const_iterator iterator);
+
 
       AscendingIterator& operator++();
-
-      vector<int>::const_iterator begin() const{return sortedCollection.begin();};
-      vector<int>::const_iterator end() const{return sortedCollection.end();};
+      
+    // AscendingIterator begin(MagicalContainer& container);
+    // AscendingIterator end(MagicalContainer& container);
+    //  vector<int>::const_iterator begin() const{return sortedCollection.begin();};
+    //  vector<int>::const_iterator end() const{return sortedCollection.end();};
+    //  AscendingIterator end() const {return AscendingIterator(sortedCollection, sortedCollection.size());};
 
    };
-
-class MagicalContainer::SideCrossIterator {
+    static AscendingIterator begin(MagicalContainer& container);
+    static AscendingIterator end(MagicalContainer& container);
+   class SideCrossIterator {
     private:
         MagicalContainer& container;
         vector<int> sortedCollection;
@@ -67,8 +81,8 @@ class MagicalContainer::SideCrossIterator {
         vector<int>::const_iterator end() const{return sortedCollection.end();};
 
     };
-class MagicalContainer::PrimeIterator
-{
+    class PrimeIterator
+    {
     private:
         MagicalContainer& container;
         vector<int> sortedCollection;
@@ -80,13 +94,13 @@ class MagicalContainer::PrimeIterator
         PrimeIterator(MagicalContainer& cont): container(cont), index(0){};
         PrimeIterator(const PrimeIterator& other);
         PrimeIterator& operator=(const PrimeIterator& other);
-        bool operator==(const PrimeIterator& otherIter) const {return true;}
-        bool operator>(const PrimeIterator& otherIter) const {return true;}
-        bool operator<(const PrimeIterator& otherIter) const {return true;}
-        bool operator!=(const PrimeIterator& otherIter) const {return false;}
+        bool operator==(const PrimeIterator& otherIter) const;
+        bool operator>(const PrimeIterator& otherIter) const;
+        bool operator<(const PrimeIterator& otherIter) const;
+        bool operator!=(const PrimeIterator& otherIter) const;
         int& operator*() {return (int&)index;};
         PrimeIterator& operator++(){return *this;};
         vector<int>::const_iterator begin() const{return sortedCollection.begin();};
         vector<int>::const_iterator end() const{return sortedCollection.end();};
+    };
 };
-
