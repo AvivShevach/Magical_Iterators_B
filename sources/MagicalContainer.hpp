@@ -6,28 +6,19 @@ namespace ariel{};
 class MagicalContainer
 {
    private:
-  // public:
         vector<int> elements;
-    //   vector<int> sortedCollection;
 
  public:
     void addElement(int);
     int size();
     void removeElement(int);
     vector<int> getCollection() const;
-
-    // vector<int>::const_iterator begin() const{return sortedCollection.begin();};
-    // vector<int>::const_iterator end() const{return sortedCollection.end();};
-
    class AscendingIterator
    {
     MagicalContainer* container;
     vector<int> sortedCollection;
     size_t index;
     public:
-    //   AscendingIterator(MagicalContainer& cont, int index=0);
-    //   AscendingIterator(const AscendingIterator& other);
-
     AscendingIterator(MagicalContainer& cont); 
     AscendingIterator(MagicalContainer *cont, size_t ind = 0);
 
@@ -39,7 +30,6 @@ class MagicalContainer
       bool operator<(const AscendingIterator& otherIter) const;
       bool operator!=(const AscendingIterator& otherIter) const;
       int operator*();
-    //  explicit AscendingIterator(std::vector<int>::const_iterator iterator);
 
       AscendingIterator& operator++();
       
@@ -47,8 +37,6 @@ class MagicalContainer
      AscendingIterator end() const;
 
    };
-    // static AscendingIterator begin(MagicalContainer& container);
-    // static AscendingIterator end(MagicalContainer& container);
    class SideCrossIterator {
     private:
         MagicalContainer* container;
